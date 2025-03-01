@@ -60,19 +60,19 @@ export default function VideoDetailContent({
               : "rounded-full bg-white/10 p-2 hover:bg-white/20 transition-colors"
           )}
         >
-          <X className="h-6 w-6" />
+          <X className="h-6 w-6 text-white" />
         </button>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-4">
+      <div className="flex flex-col md:flex-row gap-8">
         {/* Video Container */}
         <div className={cn(
           "relative bg-black rounded-lg overflow-hidden",
           isInstagram ? "aspect-[9/16]" : "aspect-video",
-          "md:w-3/5"
+          "md:w-[55%]" // Cette classe contrôle la largeur du bloc vidéo
         )}>
           <iframe
-            className="absolute inset-0 w-full h-full"
+            className="absolute inset-0 w-full h-full"// Ces classes contrôlent les dimensions de l'iframe
             src={getEmbedUrl(video.videoUrl)}
             allow="autoplay; encrypted-media"
             allowFullScreen
@@ -82,7 +82,7 @@ export default function VideoDetailContent({
 
         {/* Description Container */}
         <div className={cn(
-          "md:w-2/5 flex items-center justify-center"
+          "md:w-[40%] flex items-center justify-center md:ml-4" // [] Cette classe contrôle la largeur du bloc description md:ml-4
         )}>
           <div className="relative w-full h-[80%] space-y-4 bg-white/5 p-5 rounded-lg backdrop-blur-md border border-white/10">
             <div className="absolute -inset-1 blur-lg bg-blue-600/20 rounded-lg" />
@@ -103,13 +103,13 @@ export default function VideoDetailContent({
       {/* Related Videos Section */}
       {filteredRelatedVideos.length > 0 && (
       <div className={cn(
-        "space-y-2 mt-4", // Réduit l'espace entre la vidéo principale et la section
+        "space-y-2 mt-8", // Réduit l'espace entre la vidéo principale et la section
         variant === "dialog" ? "mb-4" : "mt-8"
       )}>
-        <div className="flex justify-start mb-2"> {/* Réduit l'espace sous le titre */}
+        <div className="flex justify-start mb-4"> {/* Réduit l'espace sous le titre */}
           <div className={cn("relative")}>
             {variant === "dialog" && (
-              <div className="absolute -inset-1 blur-2xl bg-blue-600/20 rounded-lg" />
+              <div className="absolute -inset-1 bg-blue-600/50 blur-xl rounded-lg" />
             )}
             <h3 className={cn(
               variant === "dialog" 
@@ -140,7 +140,7 @@ export default function VideoDetailContent({
                       key={relatedVideo.id}
                       className="basis-[20%] pl- h-auto" // Ajustement de la taille et de l'espacement
                     >
-                      <div className="scale-98"> {/* Réduction de la taille des cartes de 10% */}
+                      <div className="scale-100"> {/* Réduction de la taille des cartes de 10% */}
                         <VideoCard
                           video={relatedVideo}
                           isReel={relatedVideo.type === "instagram"}

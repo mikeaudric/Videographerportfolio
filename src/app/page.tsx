@@ -82,6 +82,15 @@ const allVideos: Video[] = [
     duration: "30:20",
     type: "youtube",
   },
+  {
+    id: 8,
+    title: "I Built an AI Social Media System",
+    description:
+      "Dans cette interview exclusive, nous plongeons dans l'univers d'un joueur professionnel béninois de eFootball de l’équipe AfriGamers. Il partage avec nous son parcours, sa rencontre avec sa team, ses difficultés et sa qualification pour EWC où il représente le Bénin. Découvrez comment il a concilié passion pour les jeux vidéo et vie personnelle, l’impact de cette passion sur ses relations familiales, ainsi que ses perspectives d’avenir dans les compétitions d’esport.",
+    videoUrl: "https://www.youtube.com/watch?v=4FAHV19KwKQ",
+    duration: "30:20",
+    type: "youtube",
+  }
 ]
 
 export default function Page() {

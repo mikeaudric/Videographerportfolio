@@ -201,29 +201,20 @@ const CarouselPrevious = React.forwardRef<
 >(({ className, variant = "outline", size = "icon", ...props }, ref) => {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel()
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    scrollPrev();
-  };
-
   return (
     <Button
       ref={ref}
       variant={variant}
       size={size}
       className={cn(
-        "absolute h-10 w-10 rounded-full",
-        "bg-blue-600 hover:bg-blue-700",
-        "border-none shadow-lg",
-        "transition-transform duration-200",
-        "hover:-translate-x-1",
+        "absolute h-10 w-10 rounded-full bg-blue-600 shadow-lg hover:bg-blue-700 border-none transition-all transform hover:-translate-x-2 z-50",
         orientation === "horizontal"
-          ? "-left-5 top-1/2 -translate-y-1/2"
+          ? "left-2 top-1/2 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
       disabled={!canScrollPrev}
-      onClick={handleClick}
+      onClick={scrollPrev}
       {...props}
     >
       <ArrowLeft className="h-5 w-5 text-white" />
@@ -231,6 +222,7 @@ const CarouselPrevious = React.forwardRef<
     </Button>
   )
 })
+CarouselPrevious.displayName = "CarouselPrevious"
 
 const CarouselNext = React.forwardRef<
   HTMLButtonElement,
@@ -249,18 +241,14 @@ const CarouselNext = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "absolute h-10 w-10 rounded-full",
-        "bg-blue-600 hover:bg-blue-700",
-        "border-none shadow-lg",
-        "transition-transform duration-200",
-        "hover:translate-x-1",
+        "absolute h-10 w-10 rounded-full bg-blue-600 shadow-lg hover:bg-blue-700 border-none transition-all transform hover:translate-x-2 z-50",
         orientation === "horizontal"
-          ? "-right-5 top-1/2 -translate-y-1/2"
+          ? "right-2 top-1/2 -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
       disabled={!canScrollNext}
-      onClick={handleClick}
+      onClick={handleClick}  // On remplace scrollNext par notre nouvelle fonction
       {...props}
     >
       <ArrowRight className="h-5 w-5 text-white" />
@@ -279,4 +267,3 @@ export {
   CarouselPrevious,
   CarouselNext,
 }
-
